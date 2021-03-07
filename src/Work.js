@@ -1,49 +1,55 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import profile from './assests/profile.jfif'
+import React, { Component } from 'react'
 
-function Work() {
-    return (
-        <div className="work">
-            <header class="navbar">
-                <div class="profile">
-                    <img class="round-img" src={profile} alt="profile" />
+export class Work extends Component {
+    render() {
+        const ele = this.props.memeTemp ? (
+            <div className="add-shadow">
+            <img className="image" src={this.props.memeTemp.url} alt={this.props.memeTemp.name} />
+         </div> 
+        ) : (
+            <div className="non-responsive" >
+                    <p>Choose the template from sidebar</p>
+                </div>
+          
+        )
+        return (
+            <div className="work">
+            <header className="navbar">
+                <div className="profile">
+                    <img className="round-img" src={profile} alt="profile" />
                     <div >
                         <h4>Bikash Shrestha</h4>
                         <p>Memer</p>
                     </div>
                 </div>
 
-                <div class="buttons">
-                    <button class="btn-primary">Upload</button>
-                    <Link to={"/templates"}><i class="fas fa-chevron-right" id="right"></i></Link>
+                <div className="buttons">
+                    <button className="btn-primary">Upload</button>
+                    <Link to={"/templates"}><i className="fas fa-chevron-right" id="right"></i></Link>
                 </div>
             </header>
 
-            <div class="generate">
-                <div class="items">
-                    <div class="editor">
-                        <div><i class="fas fa-font"></i></div>
-                        <div><i class="fas fa-download"></i></div>
-                        <div><i class="fas fa-sliders-h"></i></div>
+            <div className="generate">
+                <div className="items">
+                    <div className="editor">
+                        <div><i className="fas fa-font"></i></div>
+                        <div><i className="fas fa-download"></i></div>
+                        <div><i className="fas fa-sliders-h"></i></div>
                     </div>
-                    <div class="arrow"><i class="fas fa-chevron-right"></i></div>
+                    <div className="arrow"><i className="fas fa-chevron-right"></i></div>
                 </div>
-                <div class="non-responsive" >
-                    <p>Choose the template from sidebar</p>
-                </div>
-                <div class="responsive" >
+                <div className="responsive" >
                     <p>Choose the template</p>
-                    <button class="mar btn-secondary"><Link to={"/templates"}>Choose</Link></button>
+                    <button className="mar btn-secondary"><Link to={"/templates"}>Choose</Link></button>
                 </div>
-                {/* <!-- <div class="add-shadow">
-                   <img class="image" src="./assets/1.png" alt="">
-                    
-                </div> --> */}
+                {ele}
             <div></div>
         </div>
         </div>
-    )
+        )
+    }
 }
 
 export default Work

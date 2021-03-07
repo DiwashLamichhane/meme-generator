@@ -1,11 +1,12 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import Image from './assests/meme.png'
 import Template from './Templates.module.css'
+import React, { Component } from 'react'
 
-function Templates() {
-    return (
-             <div className={Template.container}>
+export class Templates extends Component {
+    render() {
+        return (
+            <div className={Template.container}>
         <div className={Template.header}>
             
             <h1> <Link classNames={Template.black} to={"/"}><i className="fas fa-chevron-left"></i></Link> Templates</h1>
@@ -31,7 +32,9 @@ function Templates() {
             </div>
         </div>
             
-    )
+        )
+    }
 }
 
 export default Templates
+

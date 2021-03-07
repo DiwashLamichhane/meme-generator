@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container{
+    width: 90%;
+    margin: auto;
+}
+
+.header{
+    margin-top: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.searchBar{
+    height: 40px;
+    width: 300px;
+    background-color: #EDEDED;
+    border-radius: 10px;
+    position: relative;
+}
+
+.searchBox{
+    height: 40px;
+    width: 300px;
+    background-color: #EDEDED;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    padding-left: 10px;
+    padding-right: 40px;
+
+}
+
+.search {
+    position: absolute;
+    outline: none;
+    border: none;
+    size: 50px;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+    background-color:#EDEDED;
+}
+
+
+.faSearch{
+    color: #858585;
+    
+}
+
+.subHeader{
+    display: flex;
+    /* width: 80%; */
+    justify-content: space-around;
+    margin-top: 25px;
+    
+}
+
+.subHeader>div{
+    width: 50%;
+    text-align: center;
+    padding: 4px;
+    cursor: pointer;
+}
+
+.liActive{
+    color: #845EC2;
+    font-weight: bold;
+    border-bottom: 2px solid #845EC2;
+    z-index: 2;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+    display: inline;
+}
+
+.black{
+    font-size: 25px;
+    margin-right: 20px;
+}
+
+.templates{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 90%;
+    height: 550px;
+    overflow-y: scroll;
+}
+
+.memeTemp{
+    width:170px;
+    margin-top: 15px;
+    margin: 7px;
+}
+
+.memeTemp:hover{
+    filter: brightness(70%);
+}
+
+
+::-webkit-scrollbar {
+    width: 7px;
+  }
+  
+  ::-webkit-scrollbar-track { 
+    background-color: #F2F2F2;
+    border-radius: 10px;
+  }
+   
+  ::-webkit-scrollbar-thumb {
+    background: #845EC2; 
+    border-radius: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #6840a8; 
+  } 
+
+.generate .nonResponsive{
+    text-align: center;
+}
+
+
+@media (max-width:574px){
+    .searchBar{
+        margin-top: 25px;
+    }
+}
+
+@media (max-width:463px){
+    .memeTemp{
+        width:130px;
+        margin-top: 15px;
+        margin: 7px;
+    }
+}
+
+@media (min-width:751px){
+    .container{
+        display: none;
+    }
+}

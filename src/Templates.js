@@ -7,7 +7,6 @@ import axios from 'axios'
 export class Templates extends Component {
 
     state={
-        results : [],
         search : ''
     }
 
@@ -21,7 +20,7 @@ export class Templates extends Component {
 
 
     render() {
-        const memes = this.state.results.map(meme=>{
+        const memes = this.props.results.map(meme=>{
             return <div key={meme.id}><img onClick={()=>{
                 this.props.imageDetail(meme)
                 history.push('/');

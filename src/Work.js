@@ -1,12 +1,28 @@
 import { Link } from 'react-router-dom'
 import profile from './assests/profile.jfif'
 import React, { Component } from 'react'
+import axios from 'axios'
 
 export class Work extends Component {
+
+    state = {
+        template : null
+    }
+
+    async randomTemp(){
+        const response = await axios.get('https://api.imgflip.com/get_memes')
+        var number = Math.floor(Math.random() * 100); 
+        console.log(response.data.data.memes[number])
+        this.setState({template:response.data.data.memes[number]})
+    }
+ 
     render() {
+
+        const something = this.state.template ? this.state.template.url : null
+
         const ele = this.props.memeTemp ? (
             <div className="add-shadow">
-            <img className="image" src={this.props.memeTemp.url} alt={this.props.memeTemp.name} />
+            <img className="image" src={this.state.template?something:this.props.memeTemp.url} alt={this.props.memeTemp.name} />
          </div> 
         ) : (
             <React.Fragment>
@@ -44,7 +60,7 @@ export class Work extends Component {
                         <div><i className="fas fa-download"></i></div>
                         <div><i className="fas fa-sliders-h"></i></div>
                     </div>
-                    <div className="arrow"><i className="fas fa-chevron-right"></i></div>
+                    <div className="arrow" onClick={()=>this.randomTemp()}><i className="fas fa-chevron-right"></i></div>
                 </div>
                 
                 {ele}

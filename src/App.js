@@ -1,8 +1,9 @@
 import Sidebar from './Sidebar'
 import './style.css'
 import Templates from './Templates'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { Router, Route } from 'react-router-dom'
 import Work from './Work'
+import history from './history'
 
 import React, { Component } from 'react'
 
@@ -21,11 +22,11 @@ export class App extends Component {
   render() {
     return (
       <div className="home">
-      <BrowserRouter>
+      <Router history={history}>
       <Route exact path='/' component={()=><Sidebar imageDetail={this.handleImageDetail} />} />
       <Route exact path='/' component={()=><Work memeTemp = {this.state.imageDetail}/>} />
-      <Route exact path='/templates' component={()=><Templates />} />
-      </BrowserRouter>
+      <Route exact path='/templates' component={()=><Templates imageDetail={this.handleImageDetail}/>} />
+      </Router>
     </div>
     )
   }

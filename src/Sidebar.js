@@ -1,12 +1,13 @@
-import React, { Component } from 'react'
+import React, { PureComponent  } from 'react'
 import axios from 'axios'
 
-export class Sidebar extends Component {
+export class Sidebar extends PureComponent  {
 
     state={
         results : [],
         search : ''
     }
+
 
     async componentDidMount(){
         const response = await axios.get('https://api.imgflip.com/get_memes')
@@ -14,6 +15,7 @@ export class Sidebar extends Component {
         this.setState({results: response.data.data.memes})
         
     }
+
 
     render() {
         const memes = this.state.results.map(meme=>{

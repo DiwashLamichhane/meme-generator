@@ -1,10 +1,32 @@
-import { Link } from 'react-router-dom'
-import Image from './assests/meme.png'
+import { Link} from 'react-router-dom'
 import Template from './Templates.module.css'
 import React, { Component } from 'react'
+import history from './history'
+import axios from 'axios'
 
 export class Templates extends Component {
+
+    state={
+        results : [],
+        search : ''
+    }
+
+
+    async componentDidMount(){
+        const response = await axios.get('https://api.imgflip.com/get_memes')
+        console.log(response.data.data.memes)
+        this.setState({results: response.data.data.memes})
+        
+    }
+
+
     render() {
+        const memes = this.state.results.map(meme=>{
+            return <div key={meme.id}><img onClick={()=>{
+                this.props.imageDetail(meme)
+                history.push('/');
+            }} className={Template.memeTemp} style={{height:'97%'}} src={meme.url} alt={meme.name} /></div>
+         })
         return (
             <div className={Template.container}>
         <div className={Template.header}>
@@ -23,12 +45,7 @@ export class Templates extends Component {
         </div>
         
         <div className={Template.templates}>
-                <div><img  className={Template.memeTemp} src={Image} alt="meme" /></div>             
-                <div><img  className={Template.memeTemp} src={Image} alt="meme" /></div>             
-                <div><img  className={Template.memeTemp} src={Image} alt="meme" /></div>             
-                <div><img  className={Template.memeTemp} src={Image} alt="meme" /></div>             
-                <div><img  className={Template.memeTemp} src={Image} alt="meme" /></div>             
-                <div><img  className={Template.memeTemp} src={Image} alt="meme" /></div>             
+            {memes}     
             </div>
         </div>
             

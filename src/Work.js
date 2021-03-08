@@ -9,10 +9,16 @@ export class Work extends Component {
             <img className="image" src={this.props.memeTemp.url} alt={this.props.memeTemp.name} />
          </div> 
         ) : (
+            <React.Fragment>
             <div className="non-responsive" >
                     <p>Choose the template from sidebar</p>
                 </div>
-          
+
+            <div className="responsive" >
+            <p>Choose the template</p>
+            <button className="mar btn-secondary"><Link to={"/templates"}>Choose</Link></button>
+            </div>
+            </React.Fragment>
         )
         return (
             <div className="work">
@@ -40,10 +46,7 @@ export class Work extends Component {
                     </div>
                     <div className="arrow"><i className="fas fa-chevron-right"></i></div>
                 </div>
-                <div className="responsive" >
-                    <p>Choose the template</p>
-                    <button className="mar btn-secondary"><Link to={"/templates"}>Choose</Link></button>
-                </div>
+                
                 {ele}
             <div></div>
         </div>

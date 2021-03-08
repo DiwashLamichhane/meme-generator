@@ -2,28 +2,73 @@ import { Link } from 'react-router-dom'
 import profile from './assests/profile.jfif'
 import React, { Component } from 'react'
 import axios from 'axios'
+import Draggable from 'react-draggable';
+
 
 export class Work extends Component {
 
     state = {
-        template : null
+        template : null,
+        dragItems : []
     }
-
+    
+  eventLogger = (e: MouseEvent, data: Object) => {
+    console.log('Event: ', e);
+    console.log('Data: ', data);
+  };
+    
     async randomTemp(){
         const response = await axios.get('https://api.imgflip.com/get_memes')
         var number = Math.floor(Math.random() * 100); 
         console.log(response.data.data.memes[number])
         this.setState({template:response.data.data.memes[number]})
     }
+
+    createText = () =>{
+        const dragIte = this.state.dragItems
+        dragIte.push(
+            <Draggable
+                    axis="both"
+                    handle=".handle"
+                    defaultPosition={{x: 0, y: 0}}
+                    position={null}
+                    grid={[25, 25]}
+                    scale={1}
+                    bounds = {{left:0,top:0,right:350}}
+                    onStart={this.handleStart}
+                    onDrag={this.handleDrag}
+                    onStop={this.handleStop}>
+                        <div style={{display:'inline-block',cursor:'pointer'}} className="handle">Hello</div>
+            </Draggable>        
+        )
+        this.setState({dragItems:dragIte})
+    }
+ 
  
     render() {
+
+        const items =  this.state.dragItems.map((item,index)=><div key={index}>{item}</div>)
 
         const something = this.state.template ? this.state.template.url : null
 
         const ele = this.props.memeTemp ? (
-            <div className="add-shadow">
+            <div>
+            <div style={{position:'absolute',
+                        fontSize:'18px',
+                        fontWeight:'bold',
+                        WebkitTextStrokeColor:'white',
+                        WebkitTextStrokeWidth:'0.2px'}}   
+                                          
+                className="image">
+                    
+                    {items}
+                    
+                    </div>
+
+            <div className="image add-shadow">
             <img className="image" src={this.state.template?something:this.props.memeTemp.url} alt={this.props.memeTemp.name} />
-         </div> 
+            </div> 
+            </div>
         ) : (
             <React.Fragment>
             <div className="non-responsive" >
@@ -56,7 +101,7 @@ export class Work extends Component {
             <div className="generate">
                 <div className="items">
                     <div className="editor">
-                        <div><i className="fas fa-font"></i></div>
+                        <div onClick={this.createText} ><i className="fas fa-font"></i></div>
                         <div><i className="fas fa-download"></i></div>
                         <div><i className="fas fa-sliders-h"></i></div>
                     </div>
@@ -71,4 +116,7 @@ export class Work extends Component {
     }
 }
 
+
+
 export default Work
+

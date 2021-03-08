@@ -2,7 +2,8 @@ import React, { PureComponent  } from 'react'
 export class Sidebar extends PureComponent  {
 
     state={
-        search : ''
+        search : '',
+        activeLink : 'internet'
     }
 
     render() {
@@ -20,8 +21,8 @@ export class Sidebar extends PureComponent  {
             </div>
              <div  className="sub-header">
             <ul>
-                <div  className="li-active">Heist</div>
-                <div><li>Internet</li></div>                  
+                <div onClick={()=>this.setState({activeLink:'heist'})} className={this.state.activeLink === 'heist' ? "li-active":''}>Heist</div>
+                <div onClick={()=>this.setState({activeLink:'internet'})} className={this.state.activeLink === 'internet' ? "li-active":''}>Internet</div>              
             </ul>
         </div>
 

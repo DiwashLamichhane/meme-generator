@@ -7,7 +7,8 @@ import axios from 'axios'
 export class Templates extends Component {
 
     state={
-        search : ''
+        search : '',
+        activeLink : 'internet'
     }
 
 
@@ -20,6 +21,7 @@ export class Templates extends Component {
 
 
     render() {
+
         const memes = this.props.results.map(meme=>{
             return <div key={meme.id}><img onClick={()=>{
                 this.props.imageDetail(meme)
@@ -36,11 +38,11 @@ export class Templates extends Component {
                     <input className={Template.searchBox} type="text" placeholder="search templates ..." />
                     <button className={Template.search}><i className="fas fa-search"></i></button>
                 </form>
-            </div>
+            </div> 
         </div>
         <div className={Template.subHeader}>
-            <div className={Template.liActive}>Heist</div>
-            <div>Internet</div>
+            <div onClick={()=>this.setState({activeLink:'heist'})} className={this.state.activeLink === 'heist' ? Template.liActive:''}>Heist</div>
+            <div onClick={()=>this.setState({activeLink:'internet'})} className={this.state.activeLink === 'internet' ? Template.liActive:''}>Internet</div>
         </div>
         
         <div className={Template.templates}>
